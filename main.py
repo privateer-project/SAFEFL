@@ -98,9 +98,18 @@ def get_net(net_type, num_inputs, num_outputs=10):
     if net_type == "lr":
         import models.lr as lr
         net = lr.LinearRegression(input_dim=num_inputs, output_dim=num_outputs)
-        print(net)
+    elif net_type == "rae":
+        import models.rae as rae
+        net = rae.LSTMAutoencoder(
+            input_dim = num_inputs, 
+            hidden_dim1 = 25, 
+            hidden_dim2 = 25, 
+            output_dim = num_outputs, 
+            dropout = 0.0, 
+            layer_norm_flag = [True, False])      
     else:
         raise NotImplementedError
+    print(net)
     return net
 
 
